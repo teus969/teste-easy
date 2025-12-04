@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ProductCard from './components/ProductCard';
 import Footer from './components/Footer';
+import Toast from './components/Toast';
 import { FEATURED_PRODUCTS } from './constants';
 import { Product } from './types';
 import { Sparkles, Zap, ShieldCheck, Truck } from 'lucide-react';
@@ -10,11 +11,11 @@ import { Sparkles, Zap, ShieldCheck, Truck } from 'lucide-react';
 const App: React.FC = () => {
   const [cart, setCart] = useState<Product[]>([]);
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [toast, setToast] = useState({ show: false, message: '' });
 
   const addToCart = (product: Product) => {
     setCart([...cart, product]);
-    // Optional: Add toast notification here
-    console.log(`Added ${product.name} to cart`);
+    setToast({ show: true, message: `${product.name} adicionado ao carrinho!` });
   };
 
   const filteredProducts = activeCategory === 'all' 
@@ -125,6 +126,12 @@ const App: React.FC = () => {
           </div>
         </section>
       </main>
+      
+      <Toast 
+        message={toast.message} 
+        isVisible={toast.show} 
+        onClose={() => setToast({ ...toast, show: false })} 
+      />
 
       <Footer />
     </div>
