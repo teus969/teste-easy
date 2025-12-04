@@ -12,11 +12,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
     <div className="group relative bg-[#0f0f0f] rounded-2xl overflow-hidden border border-white/5 hover:border-fuchsia-500/50 transition-all duration-500 hover:shadow-[0_0_30px_-5px_rgba(168,85,247,0.3)]">
       
       {/* Image Container */}
-      <div className="relative h-80 overflow-hidden">
+      <div className="relative h-80 overflow-hidden bg-gray-900">
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
+          loading="lazy"
+          className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1 will-change-transform"
         />
         
         {/* Overlay on Hover */}
@@ -33,7 +34,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
 
         {/* Quick Actions - Slide in from right */}
         <div className="absolute top-4 right-4 flex flex-col gap-3 translate-x-12 group-hover:translate-x-0 transition-transform duration-300">
-          <button className="p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-fuchsia-500 hover:text-white transition-colors">
+          <button className="p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-fuchsia-500 hover:text-white transition-colors shadow-lg">
             <Heart className="w-5 h-5" />
           </button>
         </div>
@@ -65,7 +66,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
           
           <button 
             onClick={() => onAddToCart(product)}
-            className="flex items-center gap-2 bg-white text-black px-5 py-2.5 rounded-lg font-bold hover:bg-fuchsia-500 hover:text-white transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 opacity-80 group-hover:opacity-100"
+            className="flex items-center gap-2 bg-white text-black px-5 py-2.5 rounded-lg font-bold hover:bg-fuchsia-500 hover:text-white transition-all duration-300 transform group-hover:translate-y-0 translate-y-2 opacity-80 group-hover:opacity-100 shadow-md hover:shadow-fuchsia-500/50"
           >
             <ShoppingCart className="w-4 h-4" />
             <span className="text-sm">ADICIONAR</span>

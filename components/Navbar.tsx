@@ -17,6 +17,10 @@ const Navbar: React.FC<NavbarProps> = ({ cartCount }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
@@ -28,12 +32,15 @@ const Navbar: React.FC<NavbarProps> = ({ cartCount }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <div className="flex items-center gap-2 group cursor-pointer">
+          <button 
+            onClick={scrollToTop}
+            className="flex items-center gap-2 group cursor-pointer focus:outline-none"
+          >
             <Sparkles className="w-8 h-8 text-fuchsia-500 group-hover:rotate-12 transition-transform duration-300" />
-            <span className="text-2xl font-serif font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-600">
+            <span className="text-2xl font-serif font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-600 group-hover:from-fuchsia-300 group-hover:to-purple-500 transition-all">
               LUMINA
             </span>
-          </div>
+          </button>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
@@ -57,7 +64,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartCount }) => {
             <div className="relative group cursor-pointer">
               <ShoppingBag className="w-5 h-5 text-white group-hover:text-fuchsia-400 transition-colors" />
               {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full animate-pulse">
+                <span className="absolute -top-2 -right-2 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full animate-pulse shadow-[0_0_10px_rgba(192,38,211,0.5)]">
                   {cartCount}
                 </span>
               )}
